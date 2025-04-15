@@ -1,0 +1,19 @@
+services:
+  spotify-client:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: spotify_client_image
+    container_name: spotify_client_container
+    environment:
+      - SPOTIFY_CLIENT_ID=${SPOTIFY_CLIENT_ID}
+      - SPOTIFY_CLIENT_SECRET=${SPOTIFY_CLIENT_SECRET}
+      - SPOTIFY_REDIRECT_URI=${SPOTIFY_REDIRECT_URI}
+      - PYTHONPATH=/spotify_client  
+    volumes:
+      - ./app:/spotify_client/app
+      - ./tests:/spotify_client/tests
+      - ./.env:/spotify_client/.env
+    ports:
+      - "8888:8888"
+    
