@@ -80,11 +80,15 @@ def main_loop(sleep_duration=1):
     print("Running Spotify Client...")
     try:
         sp = authenticate_spotify()
-        artists = get_followed_artists(sp)
-        for artist in artists:
-            logger.info(f" - {artist['name']}")
+        artists_info = get_followed_artists(sp)
+        artists_names = []
+        for artist in artists_info:
+            #logger.info(f" - {artist['name']}")
+            artists_names.append(artist['name'])
+        return artists_names  # Return only artist names
     except Exception as e:
             logger.error(f"Error in main process: {e}")
+            return []
     finally:
             logger.info(f"Sleeping for {sleep_duration} seconds...")
             time.sleep(sleep_duration)
