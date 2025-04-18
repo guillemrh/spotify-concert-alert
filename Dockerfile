@@ -13,10 +13,10 @@ RUN pip install --no-cache-dir setuptools wheel
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copiamos el resto del código al contenedor
-COPY .. ./spotify_client/
+COPY . .
 
 # Set PYTHONPATH
-ENV PYTHONPATH="/spotify_client"
+ENV PYTHONPATH="/spotify_client/app"
 
 # Ejecutamos el script principal
-CMD ["python", "spotify_client/app/spotify_client.py"]
+CMD ["python", "main.py"]
